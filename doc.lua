@@ -1,0 +1,24 @@
+---@class Awful
+---@field key fun(table: table)
+---@field spawn fun(command: string)
+---@field tag Tag
+---@field button fun(table: table)
+---@field mouse Mouse
+---@field client Client
+--
+---@class Tag
+---@field viewnext fun()
+---@field viewprev fun()
+--
+---@class Client
+---@field getmaster fun(): Client
+--
+---@class Mouse
+---@field append_client_mousebindings fun(keys: table)
+--
+---@class Screen
+---@field index integer
+--
+---@class Wibox
+--
+---@class Widget
