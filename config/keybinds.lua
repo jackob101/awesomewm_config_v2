@@ -52,6 +52,15 @@ awful.keyboard.append_global_keybindings({
 			awful.spawn("flameshot gui")
 		end,
 	}),
+	awful.key({
+		modifiers = { MODKEY, "Control" },
+		key = "o",
+		description = "Launch screen switcher",
+		group = "launcher",
+		on_press = function()
+			SCREEN_SWITCHER.START()
+		end,
+	}),
 
 	-- Tag
 

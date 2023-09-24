@@ -20,7 +20,6 @@ local theme = {
 	},
 }
 
----@class InfoWidgetsLogic
 local logic = {
 	volume_register_button_press = function(volume_widget)
 		volume_widget:connect_signal("button::press", function(_, _, _, b)

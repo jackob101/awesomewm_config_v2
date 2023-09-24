@@ -62,4 +62,9 @@ function utils.rrect(radius)
 	end
 end
 
+---@param text string
+function utils.bold(text)
+	return "<b>" .. text .. "<b>"
+end
+
 return utils
