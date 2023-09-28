@@ -7,6 +7,7 @@ local beautiful = require("beautiful")
 local info_widgets = require("ui/statusbar/info_widgets")
 local taglist = require("ui/statusbar/taglist")
 local launcher = require("ui/statusbar/launcher")
+local power_menu_button = require("ui/statusbar/power_menu_button")
 
 ---@param s Screen
 local function create_bar_for_screen(s)
@@ -34,7 +35,12 @@ local function create_bar_for_screen(s)
 				{
 					widget = wibox.container.margin,
 					right = beautiful.status_bar.info_widgets.icon_text_spacing,
-					info_widgets(s),
+					{
+						layout = wibox.layout.fixed.horizontal,
+						spacing = beautiful.status_bar.info_widgets.icon_text_spacing,
+						info_widgets(s),
+						power_menu_button(),
+					},
 					--TODO Controll panel toggle
 				},
 			},

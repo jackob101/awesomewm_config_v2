@@ -79,4 +79,21 @@ M.capture_user_input = function()
 	return parsed_input
 end
 
+---@param screen_index number|nil
+---@param tag_index number|nil
+M.move_focused_client_to = function(screen_index, tag_index)
+	if screen_index ~= nil and tag_index ~= nil then
+		local s = screen[screen_index]
+		local c = client.focus
+		if c ~= nil then
+			c:move_to_screen(s)
+			c:move_to_tag(s.tags[tag_index])
+			for _, t in ipairs(s.tags) do
+				t.selected = false
+			end
+			s.tags[tag_index].selected = true
+		end
+	end
+end
+
 return M

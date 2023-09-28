@@ -25,11 +25,11 @@ require("awful.hotkeys_popup.keys")
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 naughty.connect_signal("request::display_error", function(message, startup)
-	naughty.notification({
-		urgency = "critical",
-		title = "Oops, an error happened" .. (startup and " during startup!" or "!"),
-		message = message,
-	})
+    naughty.notification({
+        urgency = "critical",
+        title = "Oops, an error happened" .. (startup and " during startup!" or "!"),
+        message = message,
+    })
 end)
 -- }}}
 --
@@ -52,8 +52,11 @@ MODKEY = "Mod4"
 --
 require("service")
 require("signals")
-require("config/keybinds")
 require("config/rules")
+
+EXIT_SCREEN_MODULE = require("ui/exit_screen")
+
+require("config/keybinds")
 require("config/wallpaper")
 require("ui/statusbar")
 require("ui/volume_popup")
@@ -61,10 +64,10 @@ require("ui/volume_popup")
 -- {{{ Tag layout
 -- Table of layouts to cover with awful.layout.inc, order matters.
 tag.connect_signal("request::default_layouts", function()
-	awful.layout.append_default_layouts({
-		awful.layout.suit.spiral,
-		awful.layout.suit.tile,
-	})
+    awful.layout.append_default_layouts({
+        awful.layout.suit.spiral,
+        awful.layout.suit.tile,
+    })
 end)
 -- }}}
 
@@ -77,21 +80,20 @@ end)
 -- mytextclock = wibox.widget.textclock()
 --
 screen.connect_signal("request::desktop_decoration", function(s)
-	-- Each screen has its own tag table.
-	awful.tag({ "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" }, s, awful.layout.layouts[1])
+    -- Each screen has its own tag table.
+    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 end)
 
 -- {{{ Mouse bindings
 awful.mouse.append_global_mousebindings({
-	awful.button({}, 4, awful.tag.viewprev),
-	awful.button({}, 5, awful.tag.viewnext),
+    awful.button({}, 4, awful.tag.viewprev),
+    awful.button({}, 5, awful.tag.viewnext),
 })
 -- }}}
 
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
-	c:activate({ context = "mouse_enter", raise = false })
+    c:activate({ context = "mouse_enter", raise = false })
 end)
 
 require("config/autostart")
-awesome.emit_signal(Signals.volume_update_widgets, 100, false, false)

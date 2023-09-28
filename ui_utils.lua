@@ -55,10 +55,42 @@ function utils.background_hover(widget, color)
 	end)
 end
 
+---@param color string hover color
+function utils.fg_hover(widget, color)
+	widget:connect_signal("mouse::enter", function()
+		if widget.fg ~= color then
+			widget.backup = widget.fg
+			widget.has_backup = true
+		end
+		widget.fg = color
+	end)
+	widget:connect_signal("mouse::leave", function()
+		if widget.has_backup then
+			widget.fg = widget.backup
+		end
+	end)
+end
+
+---@param effects fun(widget: Widget)[]
+function utils.apply_hover_effects(effects) end
+
 ---@param radius number
 function utils.rrect(radius)
 	return function(cr, width, height)
 		return gears.shape.rounded_rect(cr, width, height, radius)
+	end
+end
+
+---comment
+---@param radius number
+---@param tl boolean
+---@param tr boolean
+---@param bl boolean
+---@param br boolean
+---@return function
+function utils.prrect(radius, tl, tr, br, bl)
+	return function(cr, width, height)
+		return gears.shape.partially_rounded_rect(cr, width, height, tl, tr, br, bl, radius)
 	end
 end
 
