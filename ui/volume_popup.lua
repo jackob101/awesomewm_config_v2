@@ -1,7 +1,7 @@
 local wibox = require("wibox")
 local awful = require("awful")
 local gears = require("gears")
-local ui_utils = require("ui_utils")
+local shape_utils = require("utils.shape")
 ---@type Theme
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
@@ -69,7 +69,7 @@ local volume_slider = wibox.widget({
 	minimum = 0,
 	widget = wibox.widget.slider,
 	bar_handle_color = beautiful.fg_focus,
-	bar_shape = ui_utils.rrect(5),
+	bar_shape = shape_utils.rrect(5),
 	bar_height = dpi(10),
 	bar_color = theme.slider_background_color,
 	bar_active_color = theme.active_slider_background_color,
@@ -90,7 +90,7 @@ local function create(s)
 		widget = {
 			widget = wibox.container.background,
 			bg = theme.popup_background_color,
-			shape = ui_utils.rrect(dpi(5)),
+			shape = shape_utils.rrect(dpi(5)),
 			forced_width = dpi(300),
 			forced_height = dpi(300),
 			{

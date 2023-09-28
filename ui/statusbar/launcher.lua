@@ -3,7 +3,11 @@ local awful = require("awful")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 local wibox = require("wibox")
-local ui_utils = require("ui_utils")
+local hover_utils = require("utils.hover")
+
+local theme = {
+	bg_hover = beautiful.bg_minimize,
+}
 
 function create_widget()
 	local widget = wibox.widget({
@@ -24,8 +28,10 @@ function create_widget()
 		},
 	})
 
-	ui_utils.cursor_hover(widget)
-	ui_utils.background_hover(widget, beautiful.bg_focus)
+	hover_utils.apply_hover_effects(widget, {
+		hover_utils.cursor("hand1"),
+		hover_utils.bg_hover(theme.bg_hover),
+	})
 
 	widget:connect_signal("button::release", function()
 		--TODO Mayber write app launcher using awesome instead of rofi?

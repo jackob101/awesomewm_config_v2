@@ -4,7 +4,7 @@ local gears = require("gears")
 ---@type Theme
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
-local ui_utils = require("ui_utils")
+local shape_utils = require("utils.shape")
 
 local theme = {
 	overlay_bg_color = beautiful.bg_minimize .. "99",
@@ -85,7 +85,7 @@ local function generate_help_box()
 	return wibox.widget({
 		widget = wibox.container.background,
 		bg = theme.bg_color,
-		shape = ui_utils.rrect(5),
+		shape = shape_utils.rrect(5),
 		point = function(geo, args)
 			return {
 				x = 20,
@@ -188,7 +188,7 @@ local function generate_focused_screen_content(focused_screen, logic)
 			bg = theme.bg_color,
 			forced_width = dpi(300),
 			forced_height = dpi(300),
-			shape = ui_utils.rrect(5),
+			shape = shape_utils.rrect(5),
 			{
 				widget = wibox.container.margin,
 				margins = theme.box_margin,

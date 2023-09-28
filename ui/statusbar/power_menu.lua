@@ -1,6 +1,4 @@
 local wibox = require("wibox")
-local awful = require("awful")
-local ui_utils = require("ui_utils")
 local hover_utils = require("utils.hover")
 
 --- @type Theme

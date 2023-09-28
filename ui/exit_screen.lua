@@ -4,8 +4,7 @@ local wibox = require("wibox")
 ---@type Theme
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
----@type UiUtils
-local ui_utils = require("ui_utils")
+local shape_utils = require("utils.shape")
 local hover_utils = require("utils.hover")
 
 local theme = {
@@ -48,14 +47,14 @@ local function create_options_popup()
 		local container = wibox.widget({
 			widget = wibox.container.background,
 			bg = theme.button_icon_bg .. "77",
-			shape = ui_utils.rrect(10),
+			shape = shape_utils.rrect(10),
 			{
 				id = "button_layout",
 				layout = wibox.layout.ratio.horizontal,
 				spacing = dpi(20),
 				{
 					widget = wibox.container.background,
-					shape = ui_utils.prrect(10, true, false, false, true),
+					shape = shape_utils.prrect(10, true, false, false, true),
 					bg = theme.button_icon_bg,
 					{
 						widget = wibox.container.margin,
@@ -115,7 +114,7 @@ local function create_options_popup()
 				{
 					id = "option_box",
 					widget = wibox.container.background,
-					shape = ui_utils.rrect(10),
+					shape = shape_utils.rrect(10),
 					bg = beautiful.bg_normal,
 					forced_width = dpi(450),
 					{

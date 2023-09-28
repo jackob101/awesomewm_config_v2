@@ -3,9 +3,13 @@ local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 local wibox = require("wibox")
 local awful = require("awful")
-local ui_utils = require("ui_utils")
+local ui_utils = require("utils.ui")
 local hover_utils = require("utils.hover")
 local gears = require("gears")
+
+local theme = {
+	bg_hover = beautiful.bg_minimize,
+}
 
 local mouse_keybinds = {
 	awful.button({}, 1, function(t)
@@ -106,7 +110,7 @@ local function create_taglist(s)
 					widget = wibox.container.background,
 					id = "hover_background",
 					opacity = 0,
-					bg = beautiful.bg_focus,
+					bg = theme.bg_hover,
 				},
 				{
 					widget = wibox.container.margin,

@@ -6,7 +6,7 @@ local gears = require("gears")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 
-local ui_utils = require("ui_utils")
+local ui_utils = require("utils.ui")
 
 local theme = {
 	text_font = beautiful.font_name .. beautiful.status_bar.font_size,
