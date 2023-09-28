@@ -3,11 +3,21 @@ local awful = require("awful")
 
 --- @type Theme
 local beautiful = require("beautiful")
+local dpi = beautiful.xresources.apply_dpi
 
-local info_widgets = require("ui/statusbar/info_widgets")
 local taglist = require("ui/statusbar/taglist")
 local launcher = require("ui/statusbar/launcher")
-local power_menu_button = require("ui/statusbar/power_menu_button")
+local power_menu_button = require("ui/statusbar/power_menu")
+local volume = require("ui/statusbar/volume")
+local clock = require("ui/statusbar/clock")
+local calendar = require("ui/statusbar/calendar")
+local systray = require("ui/statusbar/systray")
+
+local theme = {
+	right = {
+		spacing = dpi(15),
+	},
+}
 
 ---@param s Screen
 local function create_bar_for_screen(s)
@@ -34,11 +44,14 @@ local function create_bar_for_screen(s)
 				nil,
 				{
 					widget = wibox.container.margin,
-					right = beautiful.status_bar.info_widgets.icon_text_spacing,
+					right = theme.right.spacing,
 					{
 						layout = wibox.layout.fixed.horizontal,
-						spacing = beautiful.status_bar.info_widgets.icon_text_spacing,
-						info_widgets(s),
+						spacing = theme.right.spacing,
+						volume(),
+						clock(),
+						calendar(),
+						systray(s),
 						power_menu_button(),
 					},
 					--TODO Controll panel toggle
