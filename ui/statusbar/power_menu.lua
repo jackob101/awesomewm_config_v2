@@ -12,7 +12,6 @@ local theme = {
 ---@return Widget|nil
 local function create()
 	if EXIT_SCREEN_MODULE == nil then
-		print("exit screen module is null")
 		return nil
 	end
 

@@ -50,7 +50,6 @@ M.fg_hover = function(color)
 		local normal_fg = widget.fg
 		return {
 			enter = function()
-				print(normal_fg)
 				widget.fg = color
 			end,
 			leave = function()

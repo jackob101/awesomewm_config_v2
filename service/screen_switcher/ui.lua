@@ -165,7 +165,6 @@ local function generate_focused_screen_content(focused_screen, logic)
 	})
 
 	logic.register_screen_callback(function(new_index)
-		print("updating widget with value " .. new_index)
 		screen_prompt_answer_widget.text = new_index
 	end)
 

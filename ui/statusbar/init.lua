@@ -12,6 +12,8 @@ local volume = require("ui/statusbar/volume")
 local clock = require("ui/statusbar/clock")
 local calendar = require("ui/statusbar/calendar")
 local systray = require("ui/statusbar/systray")
+local client_name = require("ui/statusbar/client_name")
+local tag_layout = require("ui/statusbar/tag_layout")
 
 local theme = {
 	right = {
@@ -39,7 +41,12 @@ local function create_bar_for_screen(s)
 				expand = "inside",
 				{
 					layout = wibox.layout.fixed.horizontal,
+					spacing = theme.right.spacing,
 					launcher(),
+					client_name(s),
+
+					-- Add after figuring out how to remove default tooltip and change color
+					-- tag_layout(s),
 				},
 				nil,
 				{
