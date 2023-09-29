@@ -31,28 +31,16 @@ theme.fg_focus = "#ffffff"
 theme.fg_urgent = "#ffffff"
 theme.fg_minimize = "#ffffff"
 
-theme.useless_gap = dpi(0)
+theme.useless_gap = dpi(3)
 theme.border_width = dpi(1)
 theme.border_color_normal = "#000000"
 theme.border_color_active = "#535d6c"
 theme.border_color_marked = "#91231c"
 
 theme.status_bar = {
-	info_widgets = {
-		icon_size = 15,
-		icon_text_spacing = dpi(10),
-		spacing = dpi(15),
-	},
-	taglist = {
-		tasklist = {
-			margin = dpi(5),
-		},
-	},
 	font_size = theme.font_size,
 	height = dpi(34),
 }
-
-theme.volume_popup = {}
 
 theme.systray_icon_spacing = 5
 
@@ -69,6 +57,7 @@ theme.awesome_logo = CONFIG_DIR_PATH .. "/assets/awesomewm-logo.svg"
 -- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
 -- Example:
 --theme.taglist_bg_focus = "#ff0000"
+theme.taglist_font = theme.font_name .. theme.status_bar.font_size
 theme.tooltip_bg = theme.bg_normal
 
 -- Generate taglist squares:

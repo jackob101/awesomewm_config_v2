@@ -40,7 +40,6 @@ local function create(s)
 	})
 
 	ui_utils.generate_tooltip(widget, "test")
-	gears.debug.dump(widget, "layout", 3)
 	return widget
 end
 

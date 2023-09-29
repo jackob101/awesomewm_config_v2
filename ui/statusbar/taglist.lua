@@ -9,6 +9,7 @@ local gears = require("gears")
 
 local theme = {
 	bg_hover = beautiful.bg_minimize,
+	font = beautiful.font_name .. beautiful.status_bar.font_size,
 }
 
 local mouse_keybinds = {
@@ -119,6 +120,7 @@ local function create_taglist(s)
 					{
 						{
 							widget = wibox.widget.textbox,
+							-- font = theme.font,
 							align = "center",
 							id = "text_role",
 						},

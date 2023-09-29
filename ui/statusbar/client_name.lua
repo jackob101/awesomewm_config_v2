@@ -56,6 +56,13 @@ local function create(s)
 			update_text(widget.constraint.text_widget, c)
 		end
 	end)
+	tag.connect_signal("property::selected", function(t)
+		if t.screen.index == s.index then
+			if #t:clients() == 0 then
+				widget.constraint.text_widget.text = ""
+			end
+		end
+	end)
 
 	return widget
 end
