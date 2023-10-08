@@ -8,6 +8,7 @@ local dpi = beautiful.xresources.apply_dpi
 local hover_utils = require("utils.hover")
 
 local theme = {
+	font = beautiful.status_bar.font,
 	hover_fg = beautiful.fg_focus,
 }
 
@@ -36,6 +37,7 @@ local function create(s)
 			strategy = "max",
 			{
 				id = "text_widget",
+				font = theme.font,
 				widget = wibox.widget.textbox,
 			},
 		},

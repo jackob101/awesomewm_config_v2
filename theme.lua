@@ -20,31 +20,32 @@ theme.font_size = 10
 theme.font_name = "Ubuntu "
 theme.font = theme.font_name .. theme.font_size
 
-theme.bg_normal = "#222222"
-theme.bg_focus = "#535d6c"
-theme.bg_urgent = "#ff0000"
-theme.bg_minimize = "#444444"
+theme.bg_normal = "#181b20"
+theme.bg_focus = "#323641"
+theme.bg_urgent = "#e55562"
+theme.bg_minimize = "#30363f"
 theme.bg_systray = theme.bg_normal
 
-theme.fg_normal = "#aaaaaa"
-theme.fg_focus = "#ffffff"
+theme.fg_normal = "#a0a8b7"
+theme.fg_focus = "#8ebd6b"
 theme.fg_urgent = "#ffffff"
 theme.fg_minimize = "#ffffff"
 
 theme.useless_gap = dpi(3)
 theme.border_width = dpi(1)
 theme.border_color_normal = "#000000"
-theme.border_color_active = "#535d6c"
+theme.border_color_active = "#323641"
 theme.border_color_marked = "#91231c"
 
-theme.status_bar = {
-	font_size = theme.font_size,
-	height = dpi(34),
-}
+theme.status_bar = {}
+theme.status_bar.font_size = theme.font_size + 1
+theme.status_bar.font_name = theme.font_name .. "Bold"
+theme.status_bar.font = theme.status_bar.font_name .. " " .. theme.status_bar.font_size
+theme.status_bar.height = dpi(33)
 
 theme.systray_icon_spacing = 5
 
-theme.taglist_font = theme.font_name .. "bold 11"
+theme.taglist_font = theme.status_bar.font
 theme.awesome_logo = CONFIG_DIR_PATH .. "/assets/awesomewm-logo.svg"
 -- There are other variable sets
 -- overriding the default one when
@@ -57,8 +58,11 @@ theme.awesome_logo = CONFIG_DIR_PATH .. "/assets/awesomewm-logo.svg"
 -- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
 -- Example:
 --theme.taglist_bg_focus = "#ff0000"
-theme.taglist_font = theme.font_name .. theme.status_bar.font_size
-theme.tooltip_bg = theme.bg_normal
+theme.taglist_font = theme.status_bar.font
+theme.taglist_fg_focus = theme.bg_normal
+theme.taglist_bg_focus = theme.fg_focus
+theme.tooltip_bg = theme.bg_focus
+theme.tooltip_fg = theme.fg_normal
 
 -- Generate taglist squares:
 local taglist_square_size = dpi(0)
@@ -139,10 +143,10 @@ theme.icon_theme = nil
 
 -- Set different colors for urgent notifications.
 rnotification.connect_signal("request::rules", function()
-	rnotification.append_rule({
-		rule = { urgency = "critical" },
-		properties = { bg = "#ff0000", fg = "#ffffff" },
-	})
+    rnotification.append_rule({
+        rule = { urgency = "critical" },
+        properties = { bg = "#ff0000", fg = "#ffffff" },
+    })
 end)
 
 return theme

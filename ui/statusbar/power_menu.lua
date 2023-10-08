@@ -7,6 +7,7 @@ local beautiful = require("beautiful")
 local theme = {
 	fg = beautiful.fg_normal,
 	fg_hover = beautiful.fg_focus,
+	font = beautiful.icon_font .. " 15",
 }
 
 ---@return Widget|nil
@@ -21,7 +22,7 @@ local function create()
 		{
 			widget = wibox.widget.textbox,
 			text = "",
-			font = beautiful.icon_font .. 16,
+			font = theme.font,
 		},
 	})
 

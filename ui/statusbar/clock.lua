@@ -5,7 +5,7 @@ local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 
 local theme = {
-	text_font = beautiful.font_name .. beautiful.status_bar.font_size,
+	font = beautiful.status_bar.font,
 	font_fg = beautiful.fg_normal,
 }
 
@@ -17,7 +17,7 @@ local function create()
 		{
 			widget = wibox.widget.textclock,
 			format = "%H:%M",
-			font = theme.text_font,
+			font = theme.font,
 		},
 	})
 end

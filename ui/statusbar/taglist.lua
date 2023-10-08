@@ -5,11 +5,13 @@ local wibox = require("wibox")
 local awful = require("awful")
 local ui_utils = require("utils.ui")
 local hover_utils = require("utils.hover")
+local shape_utils = require("utils.shape")
 local gears = require("gears")
 
 local theme = {
-	bg_hover = beautiful.bg_minimize,
+	bg_hover = beautiful.fg_focus .. "22",
 	font = beautiful.font_name .. beautiful.status_bar.font_size,
+	container_background = beautiful.bg_minimize,
 }
 
 local mouse_keybinds = {
@@ -110,42 +112,40 @@ local function create_taglist(s)
 				{
 					widget = wibox.container.background,
 					id = "hover_background",
+					shape = shape_utils.rrect(5),
 					opacity = 0,
 					bg = theme.bg_hover,
 				},
 				{
-					widget = wibox.container.margin,
-					left = dpi(10),
-					right = dpi(10),
+					widget = wibox.container.background,
+					shape = shape_utils.rrect(5),
 					{
-						{
-							widget = wibox.widget.textbox,
-							-- font = theme.font,
-							align = "center",
-							id = "text_role",
-						},
+						widget = wibox.container.background,
+						id = "background_role",
 						{
 							widget = wibox.container.margin,
-							top = dpi(7),
-							bottom = dpi(7),
+							left = dpi(10),
+							right = dpi(10),
 							{
-								id = "task_list",
+								{
+									widget = wibox.widget.textbox,
+									-- font = theme.font,
+									align = "center",
+									id = "text_role",
+								},
+								{
+									widget = wibox.container.margin,
+									top = dpi(7),
+									bottom = dpi(7),
+									{
+										id = "task_list",
+										layout = wibox.layout.fixed.horizontal,
+									},
+								},
+								id = "text_and_icon_layout",
 								layout = wibox.layout.fixed.horizontal,
 							},
 						},
-						id = "text_and_icon_layout",
-						layout = wibox.layout.fixed.horizontal,
-					},
-				},
-				{
-					layout = wibox.layout.align.vertical,
-					expand = "inside",
-					nil,
-					nil,
-					{
-						widget = wibox.container.background,
-						forced_height = dpi(3),
-						id = "background_role",
 					},
 				},
 				layout = wibox.layout.stack,
@@ -156,7 +156,19 @@ local function create_taglist(s)
 		},
 	})
 
-	return widget
+	local taglist_container = wibox.widget({
+		widget = wibox.container.background,
+		shape = shape_utils.rrect(5),
+		bg = theme.container_background,
+		{
+			widget = wibox.container.margin,
+			left = dpi(15),
+			right = dpi(15),
+			widget,
+		},
+	})
+
+	return taglist_container
 end
 
 return create_taglist

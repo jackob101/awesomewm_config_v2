@@ -4,9 +4,10 @@ local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 local wibox = require("wibox")
 local hover_utils = require("utils.hover")
+local ui_utils = require("utils.ui")
 
 local theme = {
-	bg_hover = beautiful.bg_minimize,
+	bg_hover = beautiful.fg_focus,
 }
 
 function create_widget()
@@ -37,6 +38,8 @@ function create_widget()
 		--TODO Mayber write app launcher using awesome instead of rofi?
 		awful.spawn.with_shell(os.getenv("HOME") .. "/.config/rofi/launcher.sh")
 	end)
+
+	ui_utils.generate_tooltip(widget, "Launcher")
 
 	return widget
 end

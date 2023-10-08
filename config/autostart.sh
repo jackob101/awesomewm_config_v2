@@ -1,12 +1,12 @@
 #!/bin/sh
 
 run() {
-    if ! pgrep -f "$1"; then
-        "$@" &
-    fi
+	if ! pgrep -f "$1"; then
+		"$@" &
+	fi
 }
 
-run "picom" 
-run "discord" 
+run "picom" "--config" "$HOME/.config/picom/picom.conf"
+run "discord"
 run "telegram-desktop"
 run "flameshot"

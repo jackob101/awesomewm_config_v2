@@ -6,9 +6,9 @@ local ui_utils = require("utils.ui")
 local hover_utils = require("utils.hover")
 
 local theme = {
-	icon_font = beautiful.icon_font .. 15,
 	font_fg = beautiful.fg_normal,
 	hover_fg = beautiful.fg_focus,
+	font = beautiful.icon_font .. 15,
 }
 
 local buttons = {
@@ -68,7 +68,7 @@ local function create()
 		{
 			id = "icon",
 			widget = wibox.widget.textbox,
-			font = theme.icon_font,
+			font = theme.font,
 		},
 	})
 
