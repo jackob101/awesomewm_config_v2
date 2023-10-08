@@ -7,6 +7,12 @@ run() {
 }
 
 run "picom" "--config" "$HOME/.config/picom/picom.conf"
-run "discord"
-run "telegram-desktop"
 run "flameshot"
+
+if ! pgrep -f "discord"; then
+	"com.discordapp.Discord" &
+fi
+
+if ! pgrep -f "telegram"; then
+	"org.telegram.desktop" &
+fi

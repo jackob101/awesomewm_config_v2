@@ -33,7 +33,7 @@ naughty.connect_signal("request::display_error", function(message, startup)
 end)
 -- }}}
 --
-CONFIG_DIR_PATH = os.getenv("HOME") .. "/.config/awesome_new/"
+CONFIG_DIR_PATH = os.getenv("HOME") .. "/.config/awesome/"
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
