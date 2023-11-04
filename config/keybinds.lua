@@ -99,6 +99,24 @@ awful.keyboard.append_global_keybindings({
 
 	awful.key({
 		modifiers = { MODKEY, "Control" },
+		key = "Right",
+		on_press = function()
+			awful.screen.focus_relative(1)
+		end,
+		description = "focus the next screen",
+		group = "screen",
+	}),
+	awful.key({
+		modifiers = { MODKEY, "Control" },
+		key = "Left",
+		on_press = function()
+			awful.screen.focus_relative(-1)
+		end,
+		description = "focus the prev screen",
+		group = "screen",
+	}),
+	awful.key({
+		modifiers = { MODKEY, "Control" },
 		key = "l",
 		on_press = function()
 			awful.screen.focus_relative(1)
