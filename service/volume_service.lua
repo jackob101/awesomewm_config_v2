@@ -1,9 +1,9 @@
 local gears = require("gears")
 local awful = require("awful")
 
-local INC_VOLUME_CMD = "amixer -D pulse sset Master 5%+"
-local DEC_VOLUME_CMD = "amixer -D pulse sset Master 5%-"
-local TOG_VOLUME_CMD = "amixer -D pulse sset Master toggle"
+local INC_VOLUME_CMD = "pw-volume change '+5%'"
+local DEC_VOLUME_CMD = "pw-volume change '-5%'"
+local TOG_VOLUME_CMD = "pw-volume mute toggle"
 
 ---@class VolumeService
 local M = {}
@@ -27,10 +27,23 @@ end
 
 ---@param shouldDisplay boolean?
 function M.UPDATE(shouldDisplay)
-	awful.spawn.easy_async_with_shell("amixer -D pulse sget Master", function(out)
-		local isMute = string.match(out, "%[(o%D%D?)%]") == "off" -- \[(o\D\D?)\] - [on] or [off]
-		local newVolume = tonumber(string.match(out, "(%d?%d?%d)%%")) or 0
+	awful.spawn.easy_async_with_shell("pw-volume status | jq '.percentage' | xargs", function(out)
+		-- local isMute = string.match(out, "%[(o%D%D?)%]") == "off" -- \[(o\D\D?)\] - [on] or [off]
+		-- local newVolume = tonumber(string.match(out, "(%d?%d?%d)%%")) or 0
 		local shouldDisplay = shouldDisplay or false
+	
+		local isMute = string.match(out, "null") 
+		print("Is mute")
+		print(tostring(isMute))
+		local newVolume
+
+		if isMute then
+			newVolume = 0
+		else 
+			print('Out output')
+			print(out)
+			newVolume = tonumber(out)
+		end
 
 		for _, entry in pairs(M._registered_update_callbacks) do
 			entry(newVolume, isMute, shouldDisplay)
